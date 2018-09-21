@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, HostListener, ElementRef } from '@angular/core';
+import { Component, Input, Output, OnInit, HostListener, ElementRef, EventEmitter } from '@angular/core';
 import { CalendarType } from '../calendar/calendar.component';
 
 @Component({
@@ -7,6 +7,7 @@ import { CalendarType } from '../calendar/calendar.component';
     styleUrls: ['./date-picker.component.scss']
 })
 export class DatePickerComponent implements OnInit {
+    @Output() dateObject: EventEmitter<string> = new EventEmitter();
     @Input() type: CalendarType = 'single';
     inputFieldDate = null;
     isValidDateInput: boolean = false;
@@ -48,11 +49,13 @@ export class DatePickerComponent implements OnInit {
         if (this.type === 'single') {
             if (d.selectedDay.id !== 0) {
                 this.inputFieldDate = d.selectedDay.date.toLocaleDateString();
+                this.dateObject.emit(this.inputFieldDate);
             }
         } else {
             if (d.selectedFirstDay.id !== 0) {
                 this.inputFieldDate =
                     d.selectedFirstDay.date.toLocaleDateString() + ' - ' + d.selectedLastDay.date.toLocaleDateString();
+                    this.dateObject.emit(this.inputFieldDate);
             }
         }
     }
@@ -63,6 +66,7 @@ export class DatePickerComponent implements OnInit {
 
     getInputValue(e) {
         this.dateFromDatePicker = e;
+        this.dateObject.emit(this.dateFromDatePicker);
     }
 
     @HostListener('document:keydown.escape', [])

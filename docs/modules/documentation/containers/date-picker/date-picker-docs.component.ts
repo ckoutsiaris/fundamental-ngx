@@ -8,6 +8,17 @@ export class DatePickerDocsComponent implements OnInit {
     datePickerSingleHtml = `<fd-date-picker [type]="'single'"></fd-date-picker>`;
     datePickerRangeHtml = `<fd-date-picker [type]="'range'"></fd-date-picker>`;
 
+    singleDate: string;
+    rangeDate: string;
+
+    dateObjectSingleHandler(e) {
+        this.singleDate = e;
+    }
+
+    dateObjectRangeHandler(e) {
+        this.rangeDate = e;
+    }
+
     constructor() {}
 
     ngOnInit() {}
