@@ -1,5 +1,5 @@
 <button (click)="skipNavClicked()" aria-label="skip navigation" class="skip-navigation">Skip Navigation</button>
-<div class="sidebar" [ngClass]="{'sidebar-collapsed': sideCollapsed}">
+<div class="sidebar" [ngClass]="{'sidebar-collapsed': sideCollapsed}" *ngIf="mvxDisabled">
   <h1 class="logo">
     <a routerLink="/"
        class="logo-link">Fundamental
@@ -78,7 +78,7 @@
 
 <div class="content">
   <div class="collapse-button-container">
-    <button class="collapse-button" [size]="'l'" fd-button *ngIf="this.smallScreen || this.sideCollapsed" [fdType]="'standard'" [options]="'light'" [glyph]="'menu2'" (click)="this.sideCollapsed = !this.sideCollapsed"></button>
+    <button class="collapse-button" [size]="'l'" fd-button *ngIf="(this.smallScreen || this.sideCollapsed) && mvxDisabled" [fdType]="'standard'" [options]="'light'" [glyph]="'menu2'" (click)="this.sideCollapsed = !this.sideCollapsed"></button>
   </div>
   <div tabindex="0" #content class="content-margin">
     <router-outlet (activate)="onActivate()"></router-outlet>
@@ -87,6 +87,6 @@
 
 <div class="collapsed-overlay"
      [ngClass]="{'overlay-init': !this.sideCollapsed}"
-     *ngIf="this.smallScreen"
+     *ngIf="this.smallScreen && mvxDisabled"
      (click)="checkIfCloseSidebar()">
 </div>

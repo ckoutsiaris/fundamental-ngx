@@ -1,5 +1,6 @@
 import { Component, ElementRef, HostListener, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
+import { environment } from '../../../../environments/environment';
 
 @Component({
     selector: 'documentation',
@@ -43,16 +44,21 @@ export class DocumentationComponent implements OnInit {
         { url: 'tile', name: 'Tile', status: 'SAFE' },
         { url: 'time', name: 'Time', status: 'SAFE' },
         { url: 'timePicker', name: 'Time Picker', status: 'SAFE' },
-        { url: 'toggle', name: 'Toggle', status: 'ACTIVE'}
+        { url: 'toggle', name: 'Toggle', status: 'ACTIVE' }
     ];
 
     search: string = '';
     smallScreen: boolean = window.innerWidth < 992;
     sideCollapsed: boolean = window.innerWidth < 576;
+    mvxDisabled: boolean = true;
 
-    constructor(private router: Router) {}
+    constructor(private router: Router) { }
 
     ngOnInit() {
+        if (environment.mvx) {
+            this.mvxDisabled = false;
+        }
+
 
         // sort the list alphabetically
         this.components.sort((el1, el2) => {

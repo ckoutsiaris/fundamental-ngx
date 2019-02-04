@@ -34,12 +34,10 @@
                             "extractLicenses": true,
                             "vendorChunk": false,
                             "buildOptimizer": true,
-                            "fileReplacements": [
-                                {
-                                    "replace": "docs/environments/environment.ts",
-                                    "with": "docs/environments/environment.prod.ts"
-                                }
-                            ]
+                            "fileReplacements": [{
+                                "replace": "docs/environments/environment.ts",
+                                "with": "docs/environments/environment.prod.ts"
+                            }]
                         },
                         "hmr": {
                             "optimization": true,
@@ -51,13 +49,26 @@
                             "extractLicenses": true,
                             "vendorChunk": false,
                             "buildOptimizer": true,
-                            "fileReplacements": [
-                                {
-                                    "replace": "docs/environments/environment.ts",
-                                    "with": "docs/environments/environment.prod.ts"
-                                }
-                            ]
-                        }
+                            "fileReplacements": [{
+                                "replace": "docs/environments/environment.ts",
+                                "with": "docs/environments/environment.prod.ts"
+                            }]
+                        },
+                        "mvx": {
+                            "optimization": true,
+                            "outputHashing": "all",
+                            "sourceMap": false,
+                            "extractCss": true,
+                            "namedChunks": false,
+                            "aot": true,
+                            "extractLicenses": true,
+                            "vendorChunk": false,
+                            "buildOptimizer": true,
+                            "fileReplacements": [{
+                                "replace": "docs/environments/environment.ts",
+                                "with": "docs/environments/environment.mvx.ts"
+                            }]
+                        },
                     }
                 },
                 "serve": {
@@ -71,6 +82,9 @@
                         },
                         "hmr": {
                             "browserTarget": "ngx-fundamental-docs:build:hmr"
+                        },
+                        "mvx": {
+                            "browserTarget": "ngx-fundamental-docs:build:mvx"
                         }
                     }
                 },

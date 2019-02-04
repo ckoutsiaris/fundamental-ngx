@@ -13,8 +13,8 @@ const routes: Routes = [
 
 @NgModule({
     declarations: [AppComponent, HomeComponent],
-    imports: [BrowserAnimationsModule, RouterModule.forRoot(routes)],
+    imports: [BrowserAnimationsModule, RouterModule.forRoot(routes, { enableTracing: true })],
     bootstrap: [AppComponent],
     entryComponents: []
 })
-export class AppModule {}
+export class AppModule { }
